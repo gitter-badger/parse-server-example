@@ -4,10 +4,7 @@
 var express     = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path        = require('path');
-var env         = require('node-env-file');
-
-// .env file imported
-env(__dirname + '/.env');
+var env         = require('node-env-file')(__dirname + '/.env');
 
 var databaseUri = process.env.SERVER_DATABASE_URI || process.env.MONGOLAB_URI;
 
