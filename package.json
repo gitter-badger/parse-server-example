@@ -16,7 +16,8 @@
     "parse-server": "~2.2.2"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "cp .sample-ev .env"
   },
   "engines": {
     "node": ">=4.3"
