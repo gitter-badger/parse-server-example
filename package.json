@@ -9,15 +9,19 @@
   },
   "license": "MIT",
   "dependencies": {
-    "express": "~4.11.x",
+    "concurrently": "^2.0.0",
+    "express": "~4.13.x",
     "kerberos": "~0.0.x",
     "node-env-file": "^0.1.8",
-    "parse": "~1.8.0",
-    "parse-server": "~2.2.2"
+    "parse": "~1.8.1",
+    "parse-dashboard": "^1.0.8",
+    "parse-server": "~2.2.6"
   },
   "scripts": {
-    "start": "node index.js",
-    "postinstall": "cp .sample-ev .env"
+    "start": "concurrently \"npm run server\" \"npm run dashboard\"",
+    "server": "node index.js",
+    "dashboard": "parse-dashboard --config parse-dashboard-config.json",
+    "postinstall": "cp .sample-ev .env && npm start"
   },
   "engines": {
     "node": ">=4.3"
