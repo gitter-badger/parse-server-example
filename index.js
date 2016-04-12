@@ -1,19 +1,18 @@
 // Example express application adding the parse-server module to expose Parse
 // compatible API routes.
 
-var express     = require('express');
+var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
-var path        = require('path');
-var env         = require('node-env-file')(__dirname + '/.env');
+var path = require('path');
 
-var databaseUri = process.env.SERVER_DATABASE_URI || process.env.MONGOLAB_URI;
+var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
 var api = new ParseServer({
-  databaseURI: databaseUri || 'mongodb://127.0.0.1:27017/dev',
+  databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
