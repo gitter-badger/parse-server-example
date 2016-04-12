@@ -5,6 +5,10 @@ var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
 
+if(!process.env.DATABASE_URI) {
+  require('node-env-file')(__dirname + '/.env')
+}
+
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
 if (!databaseUri) {
